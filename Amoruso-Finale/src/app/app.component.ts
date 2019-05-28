@@ -11,7 +11,7 @@ import { Utenti } from './utenti';
 export class AppComponent {
   title = 'Amoruso-Finale';
   myForm:FormGroup
-  vettoreUT : Utenti []
+  vettoreUT : Utenti [] = [{username:"Anastasia", password:"mipiacelacalifornia"}, {username:"Riccardo", password:"aisatsana"}]
   constructor(fb:FormBuilder){
     this.myForm=fb.group({
       'username':['',Validators.required],
@@ -23,7 +23,7 @@ export class AppComponent {
     UT.username = this.myForm.controls['username'].value;
     UT.password = this.myForm.controls['password'].value;
     this.vettoreUT.push(UT);
-    console.log("cacca");
+    console.log("Utente  registrtato: " + UT.username);
   }
   onSubmit(value:string): void{
     console.log('username',this.myForm.controls['username'].value);

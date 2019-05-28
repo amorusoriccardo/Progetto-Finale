@@ -10,13 +10,13 @@
         <div *ngIf="!myForm.controls['password'].valid" class="alert alert-danger">Password invalid</div>
         <div *ngIf="myForm.controls['password'].hasError('required')"class="alert alert-danger">Password required</div>
 
-        <button (click) = 'onSub()' class="btn btn-primary">login</button>
+        <button (click) = 'onSub(username,password)'>login</button>
 
       </form>
     </td>
 
     <td>
-      <app-utenti></app-utenti>
+      <app-utenti [lista] = "vettoreUT"></app-utenti>
     </td>
   </tr>
 </table>
