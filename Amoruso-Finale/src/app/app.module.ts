@@ -8,13 +8,17 @@ import {   //Importare le funzionalità nella nostra applicazione
  ReactiveFormsModule
 } from '@angular/forms';
 import { UtentiComponent } from './utenti/utenti.component';
+import { CommentiComponent } from './commenti/commenti.component';
+import { LoginComponent } from './login/login.component';
 
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    UtentiComponent
+    UtentiComponent,
+    CommentiComponent,
+    LoginComponent
   ],
  imports: [
     BrowserModule, NgbModule,  FormsModule,

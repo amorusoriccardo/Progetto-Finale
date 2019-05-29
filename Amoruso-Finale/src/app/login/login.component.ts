@@ -11,7 +11,7 @@ import { Utenti } from './utenti';
 export class AppComponent {
   title = 'Amoruso-Finale';
   myForm: FormGroup
-  vettoreUT: Utenti[] = [{ username: "Anastasia", password: "mipiacelacalifornia" }, { username: "Riccardo", password: "aisatsana" }]
+  vettoreUT: Utenti[]
   constructor(fb: FormBuilder) {
     this.myForm = fb.group({
       'username': ['', Validators.required],
@@ -19,16 +19,11 @@ export class AppComponent {
     });
   }
   onSub() {
-    if (this.myForm.valid) {
       let UT: Utenti = new Utenti();
       UT.username = this.myForm.controls['username'].value;
       UT.password = this.myForm.controls['password'].value;
       this.vettoreUT.push(UT);
       console.log("Utente  registrtato: " + UT.username);
-    }
-    else {
-
-    }
   }
   onSubmit(value: string): void {
     console.log('username', this.myForm.controls['username'].value);
@@ -37,4 +32,3 @@ export class AppComponent {
   }
 
 }
-
