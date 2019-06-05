@@ -1,17 +1,17 @@
-<table style="width:100%">
-  <tr>
-    <td>
-      <form [formGroup] = "myForm" class = "jumbotron">
-        <input type ='text'[formControl] =" myForm.controls ['username']" class = 'form-control'>
-        <div *ngIf="!myForm.controls['username'].valid" class="alert alert-danger">Username invalid</div>
-        <div *ngIf="myForm.controls['username'].hasError('required')"class="alert alert-danger"> Username required</div>
+<div class="form-group">
+  <form [formGroup]="formLog" (ngSubmit)="login()" class = "box ">
 
-        <input type ='password'[formControl] =" myForm.controls ['password']" class = 'form-control'>
-        <div *ngIf="!myForm.controls['password'].valid" class="alert alert-danger">Password invalid</div>
-        <div *ngIf="myForm.controls['password'].hasError('required')"class="alert alert-danger">Password required</div>
+<br><h3>Accedi</h3>
 
-        <button (click) = 'onSub(username,password)' [disabled]="!myForm.valid">login</button>
+    <input type="email" placeholder="Email" [formControl]="formLog.controls['email']" >
+     <div *ngIf="!formLog.controls['email'].valid && (formLog.controls['email'].dirty || formLog.controls['email'].touched)"
+    class="sbagliato" >Inserire Email
 
-      </form>
+    </div>   <input type="password" placeholder="Password" [formControl]="formLog.controls['password']" >
+     <div *ngIf="!formLog.controls['password'].valid && (formLog.controls['password'].dirty || formLog.controls['password'].touched)"
+    class="sbagliato" >Inserire Password
+    </div>
 
-</table>
+    <button type="submit">Login</button><br>
+  </form>
+</div>

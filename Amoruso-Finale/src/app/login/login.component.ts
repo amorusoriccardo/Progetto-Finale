@@ -1,34 +1,40 @@
-import { Component } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { Utenti } from './utenti';
-
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Utenti } from '../utenti';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  selector: 'app-login',
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.css']
 })
-export class AppComponent {
-  title = 'Amoruso-Finale';
-  myForm: FormGroup
-  vettoreUT: Utenti[]
-  constructor(fb: FormBuilder) {
-    this.myForm = fb.group({
-      'username': ['', Validators.required],
-      'password': ['', Validators.required]
-    });
+export class LoginComponent implements OnInit {
+  @Input() loggedUser : Utenti;
+  @Input() utenti : Utenti[];
+  @Output() userLogin = new EventEmitter<Utenti>();
+  formLog : FormGroup;
+  constructor(fb : FormBuilder) {
+    this.formLog = fb.group(
+      {
+        email : ['', [Validators.required, Validators.email]],
+        password : ['', Validators.required]
+      }
+    )
   }
-  onSub() {
-      let UT: Utenti = new Utenti();
-      UT.username = this.myForm.controls['username'].value;
-      UT.password = this.myForm.controls['password'].value;
-      this.vettoreUT.push(UT);
-      console.log("Utente  registrtato: " + UT.username);
+  login()
+  {
+    for(let i = 0; i < this.utenti.length; i++)
+    {
+      if(this.formLog.controls['email'].value == this.utenti[i].email &&
+        this.formLog.controls['password'].value == this.utenti[i].password)
+      {
+        this.loggedUser = this.utenti[i];
+        this.userLogin.emit(this.loggedUser);
+        console.log(this.loggedUser);
+        break;
+      }
+    }
   }
-  onSubmit(value: string): void {
-    console.log('username', this.myForm.controls['username'].value);
-    console.log('password', this.myForm.controls['password'].value);
-    this.onSub();
+  ngOnInit() {
   }
 
 }
