@@ -11,11 +11,12 @@ import { Utenti } from './utenti';
 export class AppComponent {
   title = 'Amoruso-Finale';
   myForm: FormGroup
-  vettoreUT: Utenti[] = [{ username: "Anastasia", password: "mipiacelacalifornia" }, { username: "Riccardo", password: "aisatsana" }]
+  vettoreUT: Utenti[] = [{ username: "Anastasia", password: "mipiacelacalifornia", email:"ana.california@gmail.com" }, { username: "Riccardo", password: "aisatsana", email:'tricky.amoruso@gmail.com' }]
   constructor(fb: FormBuilder) {
     this.myForm = fb.group({
       'username': ['', Validators.required],
-      'password': ['', Validators.required]
+      'password': ['', Validators.required],
+      'email' :['', Validators.required]
     });
   }
   onSub() {
